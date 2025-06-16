@@ -6,9 +6,10 @@ from agno.playground import Playground
 from agno.storage.sqlite import SqliteStorage
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.yfinance import YFinanceTools
+import os 
 
 
-
+os.makedirs("tmp", exist_ok=True)
 agent_storage: str = "tmp/agents.db"
 GROQ_API_KEY= "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"
 
@@ -48,7 +49,7 @@ app = playground_app.get_app()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins="",
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
