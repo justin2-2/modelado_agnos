@@ -6,18 +6,16 @@ from agno.playground import Playground
 from agno.storage.sqlite import SqliteStorage
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.yfinance import YFinanceTools
-from dotenv import load_dotenv
 
-load_dotenv()
+
+
 agent_storage: str = "tmp/agents.db"
 GROQ_API_KEY= "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"
-ORIGINS = ("FRONTEND_URL", "")
 
 
-origins = [origin.strip() for origin in ORIGINS.split(",") if origin.strip()]
 # Configuración de los agentes
 web_agent = Agent(
-    name="Web Agent",
+    name="Jus Agent",
     model=Groq(id="llama-3.3-70b-versatile"), api_key=GROQ_API_KEY,
     tools=[DuckDuckGoTools()],
     instructions=["Always include sources"],
@@ -29,7 +27,7 @@ web_agent = Agent(
 )
 
 finance_agent = Agent(
-    name="Finance Agent",
+    name="ANGENCIA JUSTIN",
     model=Groq(id="llama-3.3-70b-versatile"), api_key=GROQ_API_KEY,
     tools=[YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True, company_news=True)],
     instructions=["Always use tables to display data"],
@@ -50,7 +48,7 @@ app = playground_app.get_app()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins="",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
