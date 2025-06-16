@@ -7,17 +7,23 @@ from agno.storage.sqlite import SqliteStorage
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.yfinance import YFinanceTools
 import os 
-
+import uvicorn
 
 os.makedirs("tmp", exist_ok=True)
+port = int(os.environ.get("PORT", 8080))  # Usa 8080 por defecto
+
 agent_storage: str = "tmp/agents.db"
+groq_model = Groq(
+    id="llama-3.3-70b-versatile",
+    api_key="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"
+)
 GROQ_API_KEY= "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"
 
 
 # Configuración de los agentes
 web_agent = Agent(
     name="Jus Agent",
-    model=Groq(id="llama-3.3-70b-versatile"), api_key=GROQ_API_KEY,
+    model=groq_model,
     tools=[DuckDuckGoTools()],
     instructions=["Always include sources"],
     storage=SqliteStorage(table_name="web_agent", db_file=agent_storage),
@@ -29,7 +35,7 @@ web_agent = Agent(
 
 finance_agent = Agent(
     name="ANGENCIA JUSTIN",
-    model=Groq(id="llama-3.3-70b-versatile"), api_key=GROQ_API_KEY,
+    model=groq_model,
     tools=[YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True, company_news=True)],
     instructions=["Always use tables to display data"],
     storage=SqliteStorage(table_name="finance_agent", db_file=agent_storage),
