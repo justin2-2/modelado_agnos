@@ -55,7 +55,4 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Si el archivo es ejecutado directamente, sirve la app
-if __name__ == "__main__":
-    print("Starting the app...")
-    playground_app.serve("level_2_agent:app", reload=True)  # Esta línea está bien
+
