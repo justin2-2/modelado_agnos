@@ -10,4 +10,4 @@ RUN pip install --upgrade pip \
 
 EXPOSE 8080
 
-CMD ["uvicorn", "level_2_agente:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["uvicorn", "level_2_agent:app", "--host", "0.0.0.0", "--port", "8080"]

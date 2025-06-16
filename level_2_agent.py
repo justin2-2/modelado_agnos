@@ -8,6 +8,7 @@ from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.yfinance import YFinanceTools
 from dotenv import load_dotenv
 
+load_dotenv()
 agent_storage: str = "tmp/agents.db"
 GROQ_API_KEY= "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"
 ORIGINS = ("FRONTEND_URL", "")
