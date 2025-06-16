@@ -55,7 +55,7 @@ app = playground_app.get_app()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://backend-480864689577.europe-west1.run.app"],
+    allow_origins=["https://frontend-480864689577.europe-west1.run.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
